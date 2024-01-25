@@ -1,0 +1,6 @@
+{
+    "general": {
+        "random_state": 42,
+        "datetime_format": "%d.%m.%Y_%H.%M"
+    }
+}
