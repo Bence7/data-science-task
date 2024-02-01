@@ -19,6 +19,9 @@ The provided `preprocess_text` function conducts several essential text preproce
 7. Removing short tokens, that length is smaller than 3.
 8. After these steps, the tokens are joined back into a text.
 
+## **Stemming vs Lemmatization**
+Lemmatization as a data preprocessing step resulted in faster processing, and the trained model had higher accuracy compared to when the stemming step was used.
+
 ## **Vectorizing**
 I had to implement vectorization before employing any modeling algorithms. When comparing two techniques, it was observed that the TfidfVectorizer outperformed the HashVectorizer in terms of model accuracy.
 
@@ -28,17 +31,31 @@ I chose to apply three algorithms to this classification task: Logistic Regressi
 
 
 ## **Evaluation**
+- On the validation set
 - Logistic Regression
 
-        Classification Report:
+
+            Classification Report:
                         precision    recall  f1-score   support
 
-                    0       0.91      0.89      0.90      5000
-                    1       0.89      0.91      0.90      5000
+                    0       0.91      0.88      0.89      3991
+                    1       0.89      0.91      0.90      4009
 
-             accuracy                           0.90     10000
-            macro avg       0.90      0.90      0.90     10000
-         weighted avg       0.90      0.90      0.90     10000
+             accuracy                           0.89      8000
+            macro avg       0.90      0.89      0.89      8000
+         weighted avg       0.90      0.89      0.89      8000
+
+- SVM
+
+            Classification Report:
+                        precision    recall  f1-score   support
+
+                    0       0.90      0.89      0.89      3991
+                    1       0.89      0.90      0.89      4009
+
+             accuracy                           0.89      8000
+            macro avg       0.89      0.89      0.89      8000
+         weighted avg       0.89      0.89      0.89      8000
 
 
 - Multinominal Naive Bayes
@@ -47,12 +64,13 @@ I chose to apply three algorithms to this classification task: Logistic Regressi
             Classification Report:
                         precision    recall  f1-score   support
 
-                    0       0.86      0.88      0.87      5000
-                    1       0.88      0.85      0.87      5000
+                    0       0.85      0.88      0.87      3991
+                    1       0.88      0.84      0.86      4009
 
-             accuracy                           0.87     10000
-            macro avg       0.87      0.87      0.87     10000
-         weighted avg       0.87      0.87      0.87     10000
+             accuracy                           0.86      8000
+            macro avg       0.86      0.86      0.86      8000
+         weighted avg       0.86      0.86      0.86      8000
+
 
 
 - Logistic Regression has the best report, has the best precision, recall, f1-score and accuracy, so I will tune its hyperparameters.
@@ -60,15 +78,15 @@ I chose to apply three algorithms to this classification task: Logistic Regressi
 
 ## **Hyperparameter Tuning**
 The `Logistic Regression` best hyperparameters are:
-- 'C': 4.9
+- 'C': 4.8
 - 'penalty': 'l2' 
 - 'solver': 'liblinear'
     
-        Classification Report:
+            Classification Report:
                         precision    recall  f1-score   support
 
-                    0       0.91      0.90      0.90      5000
-                    1       0.90      0.91      0.90      5000
+                    0       0.91      0.89      0.90      5000
+                    1       0.89      0.91      0.90      5000
 
              accuracy                           0.90     10000
             macro avg       0.90      0.90      0.90     10000
