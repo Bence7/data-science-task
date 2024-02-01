@@ -1,7 +1,7 @@
 #Folders
 data/
 __pycache__/
-
+outputs/
 
 #Extensions
 *.pyc
