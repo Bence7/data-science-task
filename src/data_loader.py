@@ -1,3 +1,4 @@
+# Importing neccessary libraries
 import requests
 import io
 import os
@@ -6,16 +7,6 @@ import logging
 import shutil
 from zipfile import ZipFile
 from dotenv import load_dotenv
-
-
-# Create logger
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler()
-    ]
-)
 
 
 # Load the variables from the .env file into the environment
@@ -65,15 +56,10 @@ def download_link(url, destination):
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(ROOT_DIR))
 
-from utils import get_project_dir
-
-DATA_DIR = get_project_dir(os.getenv('DATA_DIR'))
-RAW_DATA_DIR = os.path.join(DATA_DIR, os.getenv('RAW_DATA_DIR'))
-TRAIN_LINK = os.getenv('TRAIN_URL')
-TEST_LINK = os.getenv('TEST_URL')
-
+from utils import get_project_dir, DATA_DIR, RAW_DATA_DIR, TRAIN_LINK, TEST_LINK
 
 if __name__ == "__main__":
+    print(ROOT_DIR)
     download_link(TRAIN_LINK, RAW_DATA_DIR)
     download_link(TEST_LINK, RAW_DATA_DIR)
     logging.info("Script completed successfully.")
