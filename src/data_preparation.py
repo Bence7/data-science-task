@@ -9,6 +9,10 @@ import time
 from html import unescape
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk.tokenize import  word_tokenize

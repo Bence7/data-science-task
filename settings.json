@@ -1,8 +1,24 @@
 {
     "general": {
         "random_state": 42,
-        "train_size":0.8,
-        "datetime_format": "%d.%m.%Y_%H.%M"
+        "train_size": 0.8,
+        "data_dir": "data",
+        "raw_data_dir":"raw",
+        "processed_data_dir": "processed",
+        "outputs_dir": "outputs",
+        "models_dir": "models",
+        "predictions_dir": "predictions",
+        "validation_dir": "validation",
+        "inference_dir": "inference",
+        "results_dir": "results",
+        "train_csv": "train.csv",
+        "test_csv": "test.csv",
+        "conf_path": "settings.json",
+        "metrics": "metrics.txt",
+        "predictions_csv": "predictions.csv",
+        "train_url": "https://static.cdn.epam.com/uploads/583f9e4a37492715074c531dbd5abad2/ds/final_project_train_dataset.zip",
+        "test_url": "https://static.cdn.epam.com/uploads/583f9e4a37492715074c531dbd5abad2/ds/final_project_test_dataset.zip"
+
     },
 
     "lr": {
