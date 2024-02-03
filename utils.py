@@ -1,10 +1,17 @@
 import os
 import logging
+import json
 import pandas as pd
+from dotenv import load_dotenv
+load_dotenv()
 
 import warnings
 warnings.filterwarnings("ignore")
 
+CONF_FILE = os.getenv('CONF_PATH')
+with open(CONF_FILE, "r") as file:
+    conf = json.load(file)
+    
 
 def get_project_dir(sub_dir: str) -> str:
     # Return path to a project subdirectory
@@ -48,32 +55,33 @@ logging.basicConfig(
         
         
         
-DATA_DIR = get_project_dir(os.getenv('DATA_DIR'))
+DATA_DIR = get_project_dir(conf['general']['data_dir'])
 
-TRAIN_LINK = os.getenv('TRAIN_URL')
-TEST_LINK = os.getenv('TEST_URL')
+TRAIN_LINK = conf['general']['train_url']
+TEST_LINK = conf['general']['test_url']
 
-RAW_DATA_DIR = os.path.join(DATA_DIR, os.getenv('RAW_DATA_DIR'))
-PROCESSED_DATA_DIR = os.path.join(DATA_DIR, os.getenv('PROCESSED_DATA_DIR'))
+RAW_DATA_DIR = os.path.join(DATA_DIR, conf['general']['raw_data_dir'])
+PROCESSED_DATA_DIR = os.path.join(DATA_DIR, conf['general']['processed_data_dir'])
 
-RAW_TRAIN_CSV = os.path.join(RAW_DATA_DIR, os.getenv('TRAIN_CSV'))
-RAW_TEST_CSV = os.path.join(RAW_DATA_DIR, os.getenv('TEST_CSV'))
+RAW_TRAIN_CSV = os.path.join(RAW_DATA_DIR, conf['general']['train_csv'])
+RAW_TEST_CSV = os.path.join(RAW_DATA_DIR, conf['general']['test_csv'])
 
-PROCESSED_TRAIN_CSV = os.path.join(PROCESSED_DATA_DIR, os.getenv('TRAIN_CSV'))
-PROCESSED_TEST_CSV = os.path.join(PROCESSED_DATA_DIR, os.getenv('TEST_CSV'))
+PROCESSED_TRAIN_CSV = os.path.join(PROCESSED_DATA_DIR, conf['general']['train_csv'])
+PROCESSED_TEST_CSV = os.path.join(PROCESSED_DATA_DIR, conf['general']['test_csv'])
 
-OUTPUTS_DIR = get_project_dir(os.getenv('OUTPUTS_DIR'))
-MODELS_DIR = os.path.join(OUTPUTS_DIR, os.getenv('MODELS_DIR'))
-PREDICTIONS_DIR = os.path.join(OUTPUTS_DIR, os.getenv('PREDICTIONS_DIR'))
+OUTPUTS_DIR = get_project_dir(conf['general']['outputs_dir'])
+MODELS_DIR = os.path.join(OUTPUTS_DIR, conf['general']['models_dir'])
+PREDICTIONS_DIR = os.path.join(OUTPUTS_DIR, conf['general']['predictions_dir'])
 
-VALIDATION_PREDICTIONS_DIR = os.path.join(PREDICTIONS_DIR, os.getenv('VALIDATION_DIR'))
-INFERENCE_PREDICTIONS_DIR = os.path.join(PREDICTIONS_DIR, os.getenv('INFERENCE_DIR'))
+VALIDATION_PREDICTIONS_DIR = os.path.join(PREDICTIONS_DIR, conf['general']['validation_dir'])
+INFERENCE_PREDICTIONS_DIR = os.path.join(PREDICTIONS_DIR, conf['general']['inference_dir'])
 
-METRICS_TXT = os.getenv('METRICS')
-PREDICTIONS_CSV = os.getenv('PREDICTIONS_CSV')
+METRICS_TXT = conf['general']['metrics']
+PREDICTIONS_CSV = conf['general']['predictions_csv']
 
 METRICS_TXT_DIR = os.path.join(PREDICTIONS_DIR, METRICS_TXT)
 
 LOGREGMODEL_DIR = os.path.join(MODELS_DIR, 'logistic_regression.pickle')
 VECTORIZER_DIR = os.path.join(MODELS_DIR, 'vectorizer.pickle')        
-        
+
+print(INFERENCE_PREDICTIONS_DIR)

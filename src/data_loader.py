@@ -6,12 +6,6 @@ import sys
 import logging
 import shutil
 from zipfile import ZipFile
-from dotenv import load_dotenv
-
-
-# Load the variables from the .env file into the environment
-load_dotenv()
-
 
 # Download the .zip, extract the folder, and put the .csv file to the destination folder
 def download_link(url, destination):
@@ -56,7 +50,7 @@ def download_link(url, destination):
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(ROOT_DIR))
 
-from utils import get_project_dir, DATA_DIR, RAW_DATA_DIR, TRAIN_LINK, TEST_LINK
+from utils import RAW_DATA_DIR, TRAIN_LINK, TEST_LINK
 
 if __name__ == "__main__":
     print(ROOT_DIR)
