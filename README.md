@@ -79,15 +79,15 @@ The more frequently a word appears in the text, the larger and more prominent it
 The provided `preprocess_text` function conducts several essential text preprocessing steps to prepare the data for further analysis and modeling. Here are the key conclusions regarding the data preprocessing steps:
 
     1. The text contains HTML tags, like `<br>`, so I needed to apply a removal function `clean_html_tags`.
-    2. Next, I removed the punctuations and the numbers.
-    3. Later, I lower the letters before tokenizing.
-    4. Tokenization, break the text into individual words.
-    5. Removing common english stop words.
+    2. Next, I removed the punctuations and the numbers. (I need to remove them because they don't have significant value on the analysis.)
+    3. Later, I lower the letters before tokenizing. (It helps in standardizing the text data, making it easier to compare, match, and analyze.)
+    4. Tokenization, break the text into individual words. (So the words can be removed or lemmatized/stemmed)
+    5. Removing common english stop words. (Stopwords are words that are commonly used but don't have value in text analysis because they don't carry significant meaning. Examples of stopwords include "the," "and," "is," "in," etc.)
     6. The lemmatization process is applied using the WordNet lemmatizer, reducing words to their base or root form.
     7. Removing short tokens, that length is smaller than 3.
     8. After these steps, the tokens are joined back into a text.
 
-2. I encoded the sentiment feature, which originally had only positive or negative values, by assigning the numerical value 1 to label "positive" to and the numerical value 0 to the label "negative" to .
+2. I encoded the sentiment feature, which originally had only positive or negative values, by assigning the numerical value 1 to label "positive" to and the numerical value 0 to the label "negative" to. 
 
 ### **Stemming vs Lemmatization**
 Lemmatization as a data preprocessing step resulted in faster processing, and the trained model had higher accuracy compared to when the stemming step was used.
@@ -139,7 +139,7 @@ I chose to apply three algorithms to this classification task: Logistic Regressi
 
 
 
-- Logistic Regression has the best report, has the best precision, recall, f1-score and accuracy, so I will tune its hyperparameters.
+- Logistic Regression almost has the same report as the SVM model, but it is a little bit better in every aspect of classification metrics, has better precision, recall, f1-score, accuracy and faster to use it so I will tune its hyperparameters.
 
 
 ### **Hyperparameter Tuning**
