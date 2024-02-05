@@ -93,10 +93,10 @@ The provided `preprocess_text` function conducts several essential text preproce
 Lemmatization as a data preprocessing step resulted in faster processing, and the trained model had higher accuracy compared to when the stemming step was used.
 
 ### **Vectorization**
-I had to implement vectorization before employing any modeling algorithms. After using the same classification algorithm with two different vectorizer, it was observed that the TfidfVectorizer outperformed the HashVectorizer in terms of model accuracy.
+I had to implement vectorization before employing any modeling algorithms. After using the same classification algorithm with two different vectorizer, it was observed that the TfidfVectorizer outperformed the HashVectorizer in terms of model accuracy and was faster to fit it.
 
 ## **Modeling**
-I chose to apply three algorithms to this classification task: Logistic Regression, SVM, and Multinomial Naive Bayes. When considering model accuracy, the ranking from lowest to highest is as follows: Multinomial Naive Bayes has the lowest accuracy, followed by SVM, and Logistic Regression has the highest accuracy. SVM could be a good choice to use but it is much more time than the Logistic Regression, so i chose LR to use.
+I chose to apply three algorithms to this classification task: Logistic Regression, SVM, and Multinomial Naive Bayes. When considering model accuracy, the ranking from lowest to highest is as follows: Multinomial Naive Bayes has the lowest accuracy, followed by SVM, and Logistic Regression has the highest accuracy. SVM could be a good choice to use but it is much more time to fit and make predictions, than the Logistic Regression, so i chose LR to use.
 
 
 ### **Evaluation on the validation set**
@@ -167,7 +167,7 @@ The `Logistic Regression` best hyperparameters are:
 # **MLE part**
 
 ## **Quickstart**
-First of all, you need to clone the project with the following command in the terminal:
+First of all, if you have not done it, you need to clone the project with the following command in the terminal:
 ```bash
 git clone https://github.com/Bence7/data-science-task.git
 ```
@@ -204,6 +204,9 @@ The training phase of the ML pipeline includes downloading, preprocessing of dat
             docker cp <container_id>:/app/data/processed ./data/processed  
             ```
     - Alternatively, the train.py script can also be run locally
+        ``` bash
+        python train/train.py        
+        ```
  
 
 ## Inference
