@@ -5,7 +5,6 @@ import sys
 from dotenv import load_dotenv
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import accuracy_score
 
 # Load the variables from the .env file into the environment
 load_dotenv()
