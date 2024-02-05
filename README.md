@@ -13,7 +13,8 @@ data-science-task
 │   └─── raw                        # It will be generated after running data_loader.py script
 │        ├── train.csv
 │        └── test.csv
-├── notebooks                       
+├── notebooks   
+│   ├── images                      # Stores the plots of the analysis                 
 │   └── movies.ipynb                # Contains the DS part of the project
 ├── outputs                         
 │   ├── models                      # Contains model and vectorizer file
@@ -46,7 +47,7 @@ As I mentioned before the dataset contains 40,000 movie reviews annotated with s
 ## **Checking Notebook**
 First, to check the notebook, you need to run the `src/data_loader.py` script to download the data.
 
-## **EDA**
+## **Exploratory Data Analysis**
 ### **Distribution of Labels**
 We know that the data set contains 40,000 records.
 The data is balanced, it has 20,000-20,000 positive and negative reviews.
@@ -92,10 +93,10 @@ The provided `preprocess_text` function conducts several essential text preproce
 Lemmatization as a data preprocessing step resulted in faster processing, and the trained model had higher accuracy compared to when the stemming step was used.
 
 ### **Vectorization**
-I had to implement vectorization before employing any modeling algorithms. When comparing two techniques, it was observed that the TfidfVectorizer outperformed the HashVectorizer in terms of model accuracy.
+I had to implement vectorization before employing any modeling algorithms. After using the same classification algorithm with two different vectorizer, it was observed that the TfidfVectorizer outperformed the HashVectorizer in terms of model accuracy.
 
 ## **Modeling**
-I chose to apply three algorithms to this classification task: Logistic Regression, SVM, and Multinomial Naive Bayes. When considering model accuracy, the ranking from lowest to highest is as follows: Multinomial Naive Bayes has the lowest accuracy, followed by SVM, and Logistic Regression has the highest accuracy.
+I chose to apply three algorithms to this classification task: Logistic Regression, SVM, and Multinomial Naive Bayes. When considering model accuracy, the ranking from lowest to highest is as follows: Multinomial Naive Bayes has the lowest accuracy, followed by SVM, and Logistic Regression has the highest accuracy. SVM could be a good choice to use but it is much more time than the Logistic Regression, so i chose LR to use.
 
 
 ### **Evaluation on the validation set**
@@ -157,7 +158,7 @@ The `Logistic Regression` best hyperparameters are:
 
 ## **Potential business applications and value for business**
 - Monitoring sentiment in movie reviews allows studios and producers to understand how audiences are responding to their films.
-- It can help marketing teams understand what aspects of the movie resonate with the audience. This information can be used to create targeted and effective marketing campaigns.
+- It can help marketing teams to understand what aspects of the movie resonate with the audience. This information can be used to create effective marketing campaigns.
 - Positive sentiments can be highlighted in promotional materials, and areas of improvement from negative sentiments can be addressed in marketing strategies.
 - Early detection of negative sentiments can be crucial for managing potential controversies or issues related to a movie.
 - Businesses can use it to monitor and compare the success of their movies against competitors.
@@ -168,7 +169,7 @@ The `Logistic Regression` best hyperparameters are:
 ## **Quickstart**
 First of all, you need to clone the project with the following command in the terminal:
 ```bash
-git clone https://github.com/Bence7/data-science-task.git final_project
+git clone https://github.com/Bence7/data-science-task.git
 ```
 This will create a local copy of the repository on your machine, and you're ready to start!
 ## **Training**
@@ -187,23 +188,23 @@ The training phase of the ML pipeline includes downloading, preprocessing of dat
             ```bash
             docker build -f ./src/train/Dockerfile --build-arg settings_name=settings.json -t training_image .
             ```
+
+        3. Run the container with the following parameters:    
             ```bash
             docker run -dit --name training_container -v training_volume:/app/outputs training_image /bin/bash
             ```
 
-        3. Copy the outputs (it contains the model, vectorizer, predictions, metrics) to the local machine.
+        4. Copy the outputs (it contains the model, vectorizer, predictions, metrics) to the local machine.
             ``` bash
             docker cp <container_id>:/app/outputs/ ./outputs
             ```
 
-        4. Copy the preprocessed data to the local machine. In the inference stage, this data will be used.
+        5. Copy the preprocessed data to the local machine. In the inference stage, this data will be used.
             ``` bash
             docker cp <container_id>:/app/data/processed ./data/processed  
             ```
-    - Alternatively, the train.py script can also be run locally as follows:
-        ``` bash
-        docker cp <container_id>:/app/data/processed ./data/processed  
-        ```
+    - Alternatively, the train.py script can also be run locally
+ 
 
 ## Inference
 Once a model has been trained, it can be used to make predictions on new data in the inference stage. The inference stage is implemented in `inference/run_inference.py`.

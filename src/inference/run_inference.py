@@ -56,7 +56,7 @@ class RunInference():
         
         # Evaluate and saving the predictions, metrics.
         evaluate(predictions, y_true, folder_destination)
-        print(accuracy_score(y_true, predictions))
+        
     
     
     def _load_model(self, dir: os.path) -> LogisticRegression() or TfidfVectorizer():

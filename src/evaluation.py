@@ -39,6 +39,8 @@ def evaluate(y_true: np.array, predictions: np.array, destination: os.path):
     conf_matrix = confusion_matrix(y_true, predictions)
     classification_rep = classification_report(y_true, predictions)
     
+    logging.info(f"Accuracy is: {accuracy}")
+    
     #Save the report to the destination
     with open(os.path.join(destination, METRICS_TXT), 'w') as file:
         file.write(f'Accuracy: {accuracy}\n\n')
@@ -46,3 +48,4 @@ def evaluate(y_true: np.array, predictions: np.array, destination: os.path):
         file.write(str(conf_matrix) + '\n\n')
         file.write('Classification Report:\n')
         file.write(classification_rep)
+    
