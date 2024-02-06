@@ -171,7 +171,8 @@ First of all, if you have not done it, you need to clone the project with the fo
 ```bash
 git clone https://github.com/Bence7/data-science-task.git
 ```
-This will create a local copy of the repository on your machine, and you're ready to start!
+This will create a local copy of the repository on your machine.
+Then move to VSCode (or any IDE that you prefer), add the folder to workspace and you're ready to start!
 ## **Training**
 
 The training phase of the ML pipeline includes downloading, preprocessing of data, the actual training of the model, and the evaluation and validation of the model's performance. All of these steps are performed by the script `src/train/train.py`.
