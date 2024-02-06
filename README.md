@@ -174,13 +174,13 @@ git clone https://github.com/Bence7/data-science-task.git
 This will create a local copy of the repository on your machine, and you're ready to start!
 ## **Training**
 
-The training phase of the ML pipeline includes downloading, preprocessing of data, the actual training of the model, and the evaluation and validation of the model's performance. All of these steps are performed by the script `train/train.py`.
+The training phase of the ML pipeline includes downloading, preprocessing of data, the actual training of the model, and the evaluation and validation of the model's performance. All of these steps are performed by the script `src/train/train.py`.
 1. Download the data:
 - First of all, you need to download the data with running the following script `src/data_loader.py`.
 
 2. To train the model: 
    - Using Docker: 
-        1. Create a volume where all the necessary outputs (serialized models, predictions, plots, train results etc) will be accessible after container execution: 
+        1. Create a volume where all the necessary outputs (serialized models, predictions, train results etc) will be accessible after container execution: 
             ```bash
             docker volume create training_volume
             ```
@@ -205,16 +205,17 @@ The training phase of the ML pipeline includes downloading, preprocessing of dat
             ```
     - Alternatively, the train.py script can also be run locally
         ``` bash
-        python train/train.py        
+        python src/train/train.py  
         ```
- 
+
+So after these steps, you will find the training outputs in the `outputs/predictions/validation` folder (it contains the metrics, predictions). The model and the vectorizer method will be available in the `outputs/models` folder. Of course all these outputs are saved in the training_volume in Docker. 
 
 ## Inference
-Once a model has been trained, it can be used to make predictions on new data in the inference stage. The inference stage is implemented in `inference/run_inference.py`.
+Once a model has been trained, it can be used to make predictions on new data in the inference stage. The inference stage is implemented in `src/inference/run_inference.py`.
 
 To run the inference :
 1. Using Docker, use the following commands:
-    1. Create a volume where all the necessary outputs (serialized models, predictions, plots, train results etc) will be accessible after container execution: 
+    1. Create a volume where all the necessary outputs (serialized models, predictions, train results etc) will be accessible after container execution: 
         ```bash
         docker volume create inference_volume
         ```
@@ -237,9 +238,10 @@ To run the inference :
 
 2. Alternatively, you can also run the inference script locally:
     ```bash
-    python inference/run_inference.py        
+    python src/inference/run_inference.py               
     ```
 
+So after these steps, you will find the inference outputs in the `outputs/predictions/inference` folder (it contains the metrics, predictions). The model and the vectorizer method will be available in the `outputs/models` folder. Of course all these outputs are saved in the inference_volume in Docker.
 
 # **Wrap Up**
 In summary, this project involves analyzing a dataset of movie reviews, each labeled with sentiment information. Our objective is to develop and test a model using an inference dataset, assessing its performance in sentiment analysis. The focus is on understanding and predicting sentiment in movie reviews through the application of machine learning techniques.
