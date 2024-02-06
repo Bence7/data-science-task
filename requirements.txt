@@ -1,0 +1,7 @@
+requests==2.26.0
+python-dotenv==0.19.1
+pandas==2.2.0
+scikit-learn==1.4.0
+bs4==0.0.2
+nltk==3.8.1
+numpy==1.26.3
